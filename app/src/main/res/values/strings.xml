@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ElectroAires</string>
+    <string name="bienvenido">Bienvenido!</string>
+    <string name="iniciar_sesi_n">Iniciar Sesión</string>
+    <string name="ingresa_tu_e_mail">Ingresa tu E-mail</string>
+    <string name="ingresa_tu_contrase_a">Ingresa tu contraseña</string>
+    <string name="logoinicio">logoInicio</string>
+    <string name="recuperar_contrase_a">Recuperar Contraseña</string>
 </resources>
