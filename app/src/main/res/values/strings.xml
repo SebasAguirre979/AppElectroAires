@@ -2,9 +2,17 @@
     <string name="app_name">ElectroAires</string>
     <string name="bienvenido">Bienvenido!</string>
     <string name="iniciar_sesi_n">Iniciar Sesión</string>
-    <string name="ingresa_tu_e_mail">Ingresa tu E-mail</string>
+    <string name="ingresa_tu_e_mail">Ingresa tu e-mail</string>
     <string name="ingresa_tu_contrase_a">Ingresa tu contraseña</string>
     <string name="logoinicio">logoInicio</string>
     <string name="recuperar_contrase_a">Recuperar Contraseña</string>
     <string name="_2023_jhon_rengifo_sebastian_aguirre"><![CDATA[© 2023 Jhon Rengifo & Sebastian Aguirre]]></string>
+    <string name="todo">TODO</string>
+    <string name="enviaremos_un_e_mail_para_recuperar_tu_contrase_a">Enviaremos un e-mail para recuperar tu contraseña.</string>
+    <string name="enviar">Enviar</string>
+    <string name="menu">Menu</string>
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
