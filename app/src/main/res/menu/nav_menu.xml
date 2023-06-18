@@ -16,6 +16,16 @@
             android:icon="@drawable/baseline_add_circle_24"
             android:title="Añadir Servicio"/>
 
+        <item
+            android:id="@+id/nav_searchvehiculo"
+            android:icon="@drawable/baseline_directions_car_24"
+            android:title="Buscar Vehiculo"/>
+
+        <item
+            android:id="@+id/nav_valoraciones"
+            android:icon="@drawable/baseline_star_24"
+            android:title="Valoraciones"/>
+
     </group>
     <item
         android:title="">

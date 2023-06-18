@@ -1,11 +1,12 @@
 package com.tg.electroaires.io
+import android.util.Log
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
 object RetrofitClient {
 
-    private const val BASE_URL = "http://10.0.2.2:8000/" // Reemplaza con la dirección de tu API
+    private const val BASE_URL = "http://electroaires.herokuapp.com/" // Reemplaza con la dirección de tu API
 
     private val retrofit: Retrofit by lazy {
         try {
@@ -14,6 +15,7 @@ object RetrofitClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         } catch (e: Exception) {
+            Log.e("API", "Error al conectar con el API")
             // Manejar la excepción aquí, como mostrar un mensaje de error o realizar alguna acción de recuperación
             throw e
         }
@@ -23,15 +25,13 @@ object RetrofitClient {
         retrofit.create(UsuarioApi::class.java)
     }
 
-    /**
-     val retrofit = Retrofit.Builder()
-    .baseUrl("http://10.0.2.2:8000/")
-    .addConverterFactory(GsonConverterFactory.create())
-    .build()
+    val servicioApi: ServicioApi by lazy {
+        retrofit.create(ServicioApi::class.java)
+    }
 
-    val usuarioApi = retrofit.create(UsuarioApi::class.java)
-     */
-
+    val repuestoApi: RepuestoApi by lazy {
+        retrofit.create(RepuestoApi::class.java)
+    }
 
 
 }

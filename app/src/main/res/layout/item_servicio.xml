@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:clickable="true"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true"
+    android:outlineSpotShadowColor="@color/blue_200">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Descripción:"/>
+
+        <TextView
+            android:id="@+id/manoObra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Mano de Obra:"/>
+
+        <TextView
+            android:id="@+id/fechaIngreso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Fecha Ingreso:"/>
+
+        <TextView
+            android:id="@+id/cliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Cliente:"/>
+
+        <TextView
+            android:id="@+id/vehiculo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Vehiculo:"/>
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Total:"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
