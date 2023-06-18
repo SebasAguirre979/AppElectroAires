@@ -9,7 +9,7 @@ data class Usuario(
     val cedula: String,
     val rol: String
 )
-data class DatosRegistro(
+data class DatosLogin(
     val correo: String,
     val contrasena: String
 )
