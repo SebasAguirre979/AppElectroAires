@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:clickable="true"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true"
+    android:outlineSpotShadowColor="@color/blue_200">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <RatingBar
+            android:id="@+id/calificacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:numStars="5"
+            android:progressTint="@color/blue_200"
+            android:layout_gravity="center"
+            android:stepSize="1.0"
+            android:isIndicator="true"/>
+
+        <TextView
+            android:id="@+id/opinion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Opinion:"/>
+
+        <TextView
+            android:id="@+id/fechaValoracion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Fecha:"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

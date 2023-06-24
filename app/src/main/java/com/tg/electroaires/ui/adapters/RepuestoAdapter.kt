@@ -3,6 +3,7 @@ package com.tg.electroaires.ui.adapters
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AlertDialog
 import android.content.Context
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.tg.electroaires.R
 import com.tg.electroaires.io.RetrofitClient.servicioApi
@@ -33,6 +35,7 @@ class RepuestoAdapter(private val context: Context,
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ServiceDetailViewHolder, position: Int) {
         val detail = details[position]
@@ -100,6 +103,7 @@ class RepuestoAdapter(private val context: Context,
         val btnEdit: ImageButton = itemView.findViewById(R.id.btnEdit)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun solicitarDelete(id: Int){
         // Realizar la solicitud de eliminación al API
         val call = servicioApi.deleteRepuestoById(id)
@@ -124,6 +128,7 @@ class RepuestoAdapter(private val context: Context,
         fragment.datosServicio()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun solicitarEdicion(id:Int, cantidad: Int){
         val data = UpdateRepuesto(cantidad)
         val call = servicioApi.updateRepuestoById(id, data)

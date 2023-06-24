@@ -18,6 +18,8 @@ import com.google.android.material.textfield.TextInputEditText
 import com.tg.electroaires.R
 import com.tg.electroaires.io.RetrofitClient.usuarioApi
 import com.tg.electroaires.model.DatosLogin
+import com.tg.electroaires.ui.fragment.InfoServicioFragment
+import com.tg.electroaires.ui.fragment.ServicioFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -88,9 +90,12 @@ class MainActivity : AppCompatActivity() {
 
                         Toast.makeText(this@MainActivity, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@MainActivity, HomeActivity::class.java)
-                        // Agregar los datos al Intent utilizando el método putExtra() para pasarlo al home
-                        intent.putExtra("nombre_usuario", usuarioResponse.nombre)
                         startActivity(intent)
+
+                        //Asignar a la variableGlobal el nombre de usuario para mostrar
+                        val singleton = VariableGlobal.getInstance()
+                        singleton.nombreUsuario = usuarioResponse.nombre
+
                         progressBar.visibility = View.GONE
                         finishAffinity()
                     }

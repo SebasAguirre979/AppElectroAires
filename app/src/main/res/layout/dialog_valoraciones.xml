@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OPINA SOBRE NUESTRO SERVICIO"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:gravity="center"/>
+
+    <RatingBar
+        android:id="@+id/ratingBarValoracion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:progressTint="@color/blue_200"
+        android:layout_margin="10dp"
+        android:numStars="5"
+        android:stepSize="1.0"/>
+
+    <EditText
+        android:id="@+id/descripcionValoracion"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:hint="Escribenos tus sugerencias..."
+        android:background="@color/silver"
+        android:layout_margin="5dp"/>
+
+</LinearLayout>

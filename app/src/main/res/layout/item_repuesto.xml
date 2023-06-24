@@ -34,7 +34,6 @@
             android:id="@+id/txtCantidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Cliente:"
             android:textColor="@android:color/black" />
     </LinearLayout>
 

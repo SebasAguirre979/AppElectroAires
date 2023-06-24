@@ -1,5 +1,6 @@
 package com.tg.electroaires.ui.adapters
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,11 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.tg.electroaires.R
 import com.tg.electroaires.model.Servicio
 import com.tg.electroaires.ui.fragment.InfoServicioFragment
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class ServicioAdapter(private var services: List<Servicio>) :
     RecyclerView.Adapter<ServicioAdapter.ServiceViewHolder>() {
@@ -22,6 +30,7 @@ class ServicioAdapter(private var services: List<Servicio>) :
         return ServiceViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ServiceViewHolder, position: Int) {
         val service = services[position]
         holder.bind(service)
@@ -42,6 +51,7 @@ class ServicioAdapter(private var services: List<Servicio>) :
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit()
+
         }
     }
 
@@ -51,15 +61,37 @@ class ServicioAdapter(private var services: List<Servicio>) :
     }
 
     inner class ServiceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        @RequiresApi(Build.VERSION_CODES.O)
         @SuppressLint("SetTextI18n")
         fun bind(servicio: Servicio) {
             // Enlaza los datos del servicio al cardView
             itemView.findViewById<TextView>(R.id.descripcion).text = "Descripción: " + servicio.s_descripcion
             itemView.findViewById<TextView>(R.id.manoObra).text = "Mano de Obra: " + servicio.s_mano_obra
-            itemView.findViewById<TextView>(R.id.fechaIngreso).text = "Fecha Ingreso: " + servicio.s_fecha_entrada
+
+            val fechaOriginal = servicio.s_fecha_entrada
+            val formatoOriginal = DateTimeFormatter.ISO_DATE_TIME
+            val fecha = LocalDateTime.parse(fechaOriginal, formatoOriginal)
+
+            val zonaHorariaAPI = ZoneId.of("UTC")
+            val zonaHorariaLocal = ZoneId.systemDefault()
+
+            val fechaAjustada = ZonedDateTime.of(fecha, zonaHorariaAPI).withZoneSameInstant(zonaHorariaLocal).toLocalDateTime()
+
+            val formatoDeseado = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+            val fechaFormateada = fechaAjustada.format(formatoDeseado)
+
+            itemView.findViewById<TextView>(R.id.fechaIngreso).text = "Fecha Ingreso: $fechaFormateada"
+
+
             itemView.findViewById<TextView>(R.id.cliente).text = "Cliente: " + servicio.cliente
             itemView.findViewById<TextView>(R.id.vehiculo).text = "Vehiculo: " + servicio.s_vehiculo
             itemView.findViewById<TextView>(R.id.total).text = "Total: " + servicio.s_total
+            if(servicio.estado){
+                itemView.findViewById<TextView>(R.id.estado).text = "Estado: Activo"
+            }else{
+                itemView.findViewById<TextView>(R.id.estado).text = "Estado: Inactivo"
+            }
+            Log.d("fecha", servicio.s_fecha_entrada)
         }
     }
 

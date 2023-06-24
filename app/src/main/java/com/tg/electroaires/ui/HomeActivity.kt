@@ -21,7 +21,9 @@ import com.tg.electroaires.R
 import com.tg.electroaires.model.Servicio
 import com.tg.electroaires.ui.adapters.ServicioAdapter
 import com.tg.electroaires.ui.fragment.AddServicioFragment
+import com.tg.electroaires.ui.fragment.InfoServicioFragment
 import com.tg.electroaires.ui.fragment.ServicioFragment
+import com.tg.electroaires.ui.fragment.ValoracionesFragment
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawerLayout: DrawerLayout
@@ -39,12 +41,15 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
-        // Obtener el usuario desde main
-        val nombre_usuario = intent.getStringExtra("nombre_usuario")
+        // Obtener el usuario desde la VariableGlobal
+        val singleton = VariableGlobal.getInstance()
+        val nombre_usuario = singleton.nombreUsuario
+
         //Mandar nombre al nav_header
         val headerView = navigationView.getHeaderView(0)
         val textView = headerView.findViewById<TextView>(R.id.nombreUsuario)
         textView.text = "Hola: $nombre_usuario"
+
 
         val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar,
             R.string.open_nav,
@@ -69,7 +74,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_searchvehiculo -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, AddServicioFragment()).commit()
             R.id.nav_valoraciones -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, AddServicioFragment()).commit()
+                .replace(R.id.fragment_container, ValoracionesFragment()).commit()
             R.id.nav_logout -> finalizarActivity()
         }
         drawerLayout.closeDrawer(GravityCompat.START)

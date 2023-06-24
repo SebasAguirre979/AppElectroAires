@@ -8,6 +8,7 @@ data class Servicio(
     val s_fecha_entrada: String,
     val s_fecha_salida: String,
     val s_total: Double,
+    val estado: Boolean,
     val s_vehiculo: String
 )
 
@@ -48,4 +49,11 @@ data class UpdateRepuesto(
 data class createRepuesto(
     val repuesto: Int,
     val s_cantidad: Int
+)
+
+data class putServicio(
+    val s_descripcion: String,
+    val estado: Boolean,
+    val cliente: String,
+    val s_vehiculo: String,
 )

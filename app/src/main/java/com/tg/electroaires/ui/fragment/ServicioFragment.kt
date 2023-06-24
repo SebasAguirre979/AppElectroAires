@@ -1,8 +1,11 @@
 package com.tg.electroaires.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -30,7 +33,6 @@ class ServicioFragment : Fragment() {
     private lateinit var servicioAdapter: ServicioAdapter
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private var originalServices: List<Servicio> = emptyList()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,7 +73,20 @@ class ServicioFragment : Fragment() {
             try {
                 val servicios = apiService.obtenerServicios()
                 originalServices = servicios
-                servicioAdapter = ServicioAdapter(servicios)
+
+                val listaFiltrada = servicios.filter { elemento -> elemento.estado }.sortedBy { it.s_fecha_entrada }
+
+                // Configurar y establecer para mostrar si no hay servicios activos
+                val advertenciaMsg: TextView? = view?.findViewById(R.id.AdvertenciaMsg)
+                if (listaFiltrada.isEmpty()) {
+                    recyclerView.visibility = View.GONE
+                    advertenciaMsg?.visibility = View.VISIBLE
+                } else {
+                    recyclerView.visibility = View.VISIBLE
+                    advertenciaMsg?.visibility = View.GONE
+                }
+
+                servicioAdapter = ServicioAdapter(listaFiltrada)
                 recyclerView.adapter = servicioAdapter
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "Error al obtener los servicios", Toast.LENGTH_SHORT).show()
