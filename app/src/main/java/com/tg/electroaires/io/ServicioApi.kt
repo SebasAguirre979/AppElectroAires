@@ -5,7 +5,9 @@ import com.tg.electroaires.model.Servicio
 import com.tg.electroaires.model.ServicioCompleto
 import com.tg.electroaires.model.UpdateRepuesto
 import com.tg.electroaires.model.UsuarioResponse
+import com.tg.electroaires.model.Valoraciones
 import com.tg.electroaires.model.createRepuesto
+import com.tg.electroaires.model.putServicio
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -30,4 +32,10 @@ interface ServicioApi {
 
     @POST("createrepuesto/{id}/")
     fun addRpuestoServicio(@Path("id") id: Int, @Body createRepuesto: createRepuesto): Call<Void>
+
+    @PUT("servicios/{id}/")
+    fun putServicio(@Path("id") id: Int, @Body data: putServicio): Call<Void>
+
+    @GET("serviciosplaca/{vehiculo_id}/")
+    fun getServicioPlaca(@Path("vehiculo_id") vehiculo_id: String): Call<List<ServicioCompleto>>
 }

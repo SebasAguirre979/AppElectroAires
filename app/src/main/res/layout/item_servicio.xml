@@ -56,6 +56,12 @@
             android:layout_height="wrap_content"
             tools:text="Total:"/>
 
+        <TextView
+            android:id="@+id/estado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Estado:"/>
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

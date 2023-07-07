@@ -1,4 +1,5 @@
 package com.tg.electroaires.ui.adapters
+
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
@@ -6,32 +7,31 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.tg.electroaires.R
 import com.tg.electroaires.model.Servicio
+import com.tg.electroaires.model.ServicioCompleto
 import com.tg.electroaires.ui.fragment.InfoServicioFragment
-import java.text.SimpleDateFormat
+import com.tg.electroaires.ui.fragment.InfoServicioPasadoFragment
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
-import java.util.Locale
 
-class ServicioAdapter(private var services: List<Servicio>) :
-    RecyclerView.Adapter<ServicioAdapter.ServiceViewHolder>() {
+class BusquedaServicioAdapter(private var services: List<ServicioCompleto>):
+    RecyclerView.Adapter<BusquedaServicioAdapter.BusquedaServicioViewHolder>(){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BusquedaServicioViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_servicio, parent, false)
-        return ServiceViewHolder(view)
+        return BusquedaServicioViewHolder(view)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onBindViewHolder(holder: ServiceViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BusquedaServicioAdapter.BusquedaServicioViewHolder, position: Int) {
         val service = services[position]
         holder.bind(service)
         holder.itemView.setOnClickListener {
@@ -39,7 +39,7 @@ class ServicioAdapter(private var services: List<Servicio>) :
             intent.putExtra("serviceId", service.id) // Pasa el ID del servicio o cualquier otra información que necesites
             holder.itemView.context.startActivity(intent)**/
             val fragmentManager = (holder.itemView.context as AppCompatActivity).supportFragmentManager
-            val fragment = InfoServicioFragment()
+            val fragment = InfoServicioPasadoFragment()
 
             // Pasa los datos necesarios al fragmento utilizando Bundle
             val bundle = Bundle()
@@ -60,10 +60,10 @@ class ServicioAdapter(private var services: List<Servicio>) :
         return services.size
     }
 
-    inner class ServiceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class BusquedaServicioViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         @RequiresApi(Build.VERSION_CODES.O)
         @SuppressLint("SetTextI18n")
-        fun bind(servicio: Servicio) {
+        fun bind(servicio: ServicioCompleto) {
             // Enlaza los datos del servicio al cardView
             itemView.findViewById<TextView>(R.id.descripcion).text = "Descripción: " + servicio.s_descripcion
             itemView.findViewById<TextView>(R.id.manoObra).text = "Mano de Obra: " + servicio.s_mano_obra
@@ -83,20 +83,12 @@ class ServicioAdapter(private var services: List<Servicio>) :
             itemView.findViewById<TextView>(R.id.fechaIngreso).text = "Fecha Ingreso: $fechaFormateada"
 
 
-            itemView.findViewById<TextView>(R.id.cliente).text = "Cliente: " + servicio.cliente
-            itemView.findViewById<TextView>(R.id.vehiculo).text = "Vehiculo: " + servicio.s_vehiculo
-            itemView.findViewById<TextView>(R.id.total).text = "Total: " + servicio.s_total
-            if(servicio.estado){
-                itemView.findViewById<TextView>(R.id.estado).text = "Estado: Activo"
-            }else{
-                itemView.findViewById<TextView>(R.id.estado).text = "Estado: Inactivo"
-            }
-        }
-    }
+            itemView.findViewById<TextView>(R.id.vehiculo).text = "Vehiculo: " + servicio.s_vehiculo.placa
 
-    fun updateData(newServices: List<Servicio>) {
-        services = newServices
-        notifyDataSetChanged()
+            itemView.findViewById<TextView>(R.id.cliente).text = "Cliente: " + servicio.cliente.cedula
+
+            itemView.findViewById<TextView>(R.id.total).text = "Total: " + servicio.s_total
+        }
     }
 
 }

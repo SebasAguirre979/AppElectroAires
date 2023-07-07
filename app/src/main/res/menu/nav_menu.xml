@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn = "navigation_view">
 
-    <group
-        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/repair_service_24"
@@ -26,11 +24,14 @@
             android:icon="@drawable/baseline_star_24"
             android:title="Valoraciones"/>
 
-    </group>
     <item
         android:title="">
 
         <menu>
+            <item
+                android:id="@+id/nav_user"
+                android:icon="@drawable/baseline_password_24"
+                android:title="Cambiar Contraseña"/>
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/baseline_logout_24"

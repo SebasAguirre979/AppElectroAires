@@ -3,6 +3,7 @@ package com.tg.electroaires.ui.adapters
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AlertDialog
 import android.content.Context
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.tg.electroaires.R
 import com.tg.electroaires.io.RetrofitClient.servicioApi
@@ -33,6 +35,7 @@ class RepuestoAdapter(private val context: Context,
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ServiceDetailViewHolder, position: Int) {
         val detail = details[position]
@@ -44,20 +47,20 @@ class RepuestoAdapter(private val context: Context,
         holder.itemView.findViewById<ImageButton>(R.id.btnDelete).setOnClickListener {
             // Crear un layout para el cuadro de diálogo
             val alertDialogBuilder = AlertDialog.Builder(holder.itemView.context)
-            alertDialogBuilder.setTitle("Confirmación")
-            alertDialogBuilder.setMessage("¿Estás seguro de que deseas eliminar este repuesto?")
-            alertDialogBuilder.setPositiveButton("Sí") { dialog, _ ->
+            .setTitle("Confirmación")
+            .setMessage("¿Estás seguro de que deseas eliminar este repuesto?")
+            .setPositiveButton("Sí") { dialog, _ ->
 
                 // Realizar la solicitud de eliminar a la API
                 solicitarDelete(detail.id)
 
                 dialog.dismiss() // Cerrar el cuadro de diálogo
             }
-            alertDialogBuilder.setNegativeButton("No") { dialog, _ ->
+            .setNegativeButton("No") { dialog, _ ->
                 dialog.dismiss() // Cerrar el cuadro de diálogo
             }
-            val alertDialog = alertDialogBuilder.create()
-            alertDialog.show()
+            .create()
+            alertDialogBuilder.show()
         }
 
         // Agregar el clic del botón Delete
@@ -100,6 +103,7 @@ class RepuestoAdapter(private val context: Context,
         val btnEdit: ImageButton = itemView.findViewById(R.id.btnEdit)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun solicitarDelete(id: Int){
         // Realizar la solicitud de eliminación al API
         val call = servicioApi.deleteRepuestoById(id)
@@ -124,6 +128,7 @@ class RepuestoAdapter(private val context: Context,
         fragment.datosServicio()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun solicitarEdicion(id:Int, cantidad: Int){
         val data = UpdateRepuesto(cantidad)
         val call = servicioApi.updateRepuestoById(id, data)

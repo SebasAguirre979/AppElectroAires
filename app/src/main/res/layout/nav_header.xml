@@ -12,7 +12,7 @@
     <ImageView
         android:layout_width="101dp"
         android:layout_height="105dp"
-        android:src="@drawable/logoelectroaires"
+        android:src="@drawable/logoelectroaires_white"
         android:layout_gravity="center"/>
 
     <TextView
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="USUARIO"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:layout_gravity="center"/>
 
 

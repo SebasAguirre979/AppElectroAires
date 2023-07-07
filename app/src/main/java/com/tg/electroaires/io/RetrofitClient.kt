@@ -33,6 +33,14 @@ object RetrofitClient {
         retrofit.create(RepuestoApi::class.java)
     }
 
+    val valoracionApi: ValoracionApi by lazy {
+        retrofit.create(ValoracionApi::class.java)
+    }
+
+    val tokenApi: TokenApi by lazy {
+        retrofit.create(TokenApi::class.java)
+    }
+
 
 }
 
