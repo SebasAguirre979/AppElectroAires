@@ -53,8 +53,6 @@ import java.time.format.DateTimeFormatter
 
 class InfoServicioFragment : Fragment() {
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
-    private var nombreUsuario: String? = null
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -394,13 +392,18 @@ class InfoServicioFragment : Fragment() {
 
     private fun finalizarServicio(){
         val descripcion = view?.findViewById<TextView>(R.id.textDescripcion)?.text.toString()
+        var mano_obra = view?.findViewById<TextView>(R.id.textManoObra)?.text.toString().toDouble()
         val estado = false
         val cliente = view?.findViewById<TextView>(R.id.textCedula)?.text.toString()
         val vehiculo = view?.findViewById<TextView>(R.id.textPlaca)?.text.toString()
 
+        if(mano_obra == 0.0){
+            mano_obra = 0.0
+        }
+
         // Obtén el ID del servicio pasado desde el adaptador
         val serviceId = arguments?.getInt("serviceId")?:0
-        val data = putServicio(descripcion, estado, cliente, vehiculo)
+        val data = putServicio(descripcion, mano_obra, estado, cliente, vehiculo)
 
         Log.d("PutServicio", "$data")
 
@@ -414,6 +417,7 @@ class InfoServicioFragment : Fragment() {
                     Toast.makeText(context, "El servicio se finalizo correctamente", Toast.LENGTH_SHORT).show()
                 } else {
                     // Ocurrió un error al eliminar el servicio
+                    Log.d("ERRORESTE", response.message())
                     Toast.makeText(context, "Error al finalizar el servicio", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -428,7 +432,7 @@ class InfoServicioFragment : Fragment() {
     private fun  postValoracionServicio(calificacion: Int, descripcionValoracion: String, serviceId: Int){
 
         val data = PostValoraciones(calificacion, descripcionValoracion, serviceId)
-        Log.d("PutServicio", "$data")
+        Log.d("postValoracionServicio", "$data")
 
         val call = valoracionApi.postValoracion(data)
         call.enqueue(object : Callback<Void> {
@@ -437,6 +441,7 @@ class InfoServicioFragment : Fragment() {
                     // El servicio se eliminó correctamente (estatus 200)
                     // Realizar las acciones necesarias en tu app
 
+                    Log.d("postValoracionServicio", response.message())
                     Toast.makeText(context, "La valoracion se guardo correctamente", Toast.LENGTH_SHORT).show()
                 } else {
                     // Ocurrió un error al eliminar el servicio

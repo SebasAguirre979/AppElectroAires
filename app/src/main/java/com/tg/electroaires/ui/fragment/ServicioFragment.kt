@@ -72,9 +72,11 @@ class ServicioFragment : Fragment() {
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 val servicios = apiService.obtenerServicios()
-                originalServices = servicios
+                //originalServices = servicios
 
                 val listaFiltrada = servicios.filter { elemento -> elemento.estado }.sortedBy { it.s_fecha_entrada }
+
+                originalServices = listaFiltrada
 
                 // Configurar y establecer para mostrar si no hay servicios activos
                 val advertenciaMsg: TextView? = view?.findViewById(R.id.AdvertenciaMsg)

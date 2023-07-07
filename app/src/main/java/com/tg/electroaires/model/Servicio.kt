@@ -21,7 +21,8 @@ data class ServicioCompleto(
     val s_fecha_entrada: String,
     val s_fecha_salida: String,
     val s_total: Double,
-    val detalles_servicio: List<DetalleServicio>
+    val estado: Boolean,
+    val detalles_servicio: List<DetalleServicio>,
 )
 
 data class Cliente(
@@ -53,6 +54,7 @@ data class createRepuesto(
 
 data class putServicio(
     val s_descripcion: String,
+    val s_mano_obra: Double,
     val estado: Boolean,
     val cliente: String,
     val s_vehiculo: String,

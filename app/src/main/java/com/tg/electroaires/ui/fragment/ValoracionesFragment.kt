@@ -3,10 +3,12 @@ package com.tg.electroaires.ui.fragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -51,7 +53,15 @@ class ValoracionesFragment : Fragment() {
             swipeRefreshLayout.isRefreshing = false
         }
 
+        setHasOptionsMenu(true)
+
         return view
+    }
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+
+        // Ocultar el ítem de búsqueda en el Toolbar
+        menu.findItem(R.id.buscar)?.isVisible = false
     }
 
     private fun ListarValoraciones(){
@@ -68,8 +78,6 @@ class ValoracionesFragment : Fragment() {
                         valoracionAdapter = ValoracionAdapter(listaFiltradaValoraciones)
                         recyclerView.adapter = valoracionAdapter
                     }
-
-                    Toast.makeText(context, "Servicios listados correctamente", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(context, "Error al agregar al mostrar las valoraciones", Toast.LENGTH_SHORT).show()
                 }

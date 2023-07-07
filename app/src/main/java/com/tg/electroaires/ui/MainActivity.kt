@@ -46,13 +46,27 @@ class MainActivity : AppCompatActivity() {
             val username = editTextUsername.text.toString()
             Log.d("MiApp", "El valor de username es: " + username.toString())
             val password = editTextPassword.text.toString()
-            Log.d("MiApp", "El valor de password es: " + password.toString())
+            Log.d("MiApp", "El valor de password es: " + password)
 
-            //verificarRegistroUsuario(username, password)
-            verificarRegistroUsuario("admin@gmail.com", "admin")
+            // Verificar si el campo cedula esta vacio
+            var usernameInput: Long? = null
+            if (username.isNotBlank()) {
+                usernameInput = username.toLong()
+            }
+
+            // Verificar si la cédula es válida
+            if (usernameInput != null) {
+                // Realizar operaciones con la cédula
+                verificarRegistroUsuario(usernameInput, password)
+            } else {
+                // Manejar el caso de una cédula no válida
+                Toast.makeText(this@MainActivity, "Ingresa un valor valido", Toast.LENGTH_SHORT).show()
+            }
+
+            //verificarRegistroUsuario("admin@gmail.com", "admin")
         }
 
-        //Boton en texto para olvide mi contraseña
+        /*//Boton en texto para olvide mi contraseña
         val textOlvideContrasena = findViewById<TextView>(R.id.textViewRecuperarContrasena)
         textOlvideContrasena.paintFlags = textOlvideContrasena.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         textOlvideContrasena.setOnClickListener {
@@ -69,12 +83,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             false
-        }
+        }*/
 
     }
 
     //Validacion del usuario desde el API para dar el acceso a la app
-    private fun verificarRegistroUsuario(username: String, password: String) {
+    private fun verificarRegistroUsuario(username: Long, password: String) {
         val datosRegistro = DatosLogin(username, password)
 
         GlobalScope.launch(Dispatchers.Main) {
@@ -95,6 +109,7 @@ class MainActivity : AppCompatActivity() {
                         //Asignar a la variableGlobal el nombre de usuario para mostrar
                         val singleton = VariableGlobal.getInstance()
                         singleton.nombreUsuario = usuarioResponse.nombre
+                        singleton.cedula = usuarioResponse.cedula
 
                         progressBar.visibility = View.GONE
                         finishAffinity()

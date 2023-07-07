@@ -1,5 +1,6 @@
 package com.tg.electroaires.ui
 
+import android.content.ClipData.Item
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,8 +22,10 @@ import com.tg.electroaires.R
 import com.tg.electroaires.model.Servicio
 import com.tg.electroaires.ui.adapters.ServicioAdapter
 import com.tg.electroaires.ui.fragment.AddServicioFragment
+import com.tg.electroaires.ui.fragment.BuscarVehiculoFragment
 import com.tg.electroaires.ui.fragment.InfoServicioFragment
 import com.tg.electroaires.ui.fragment.ServicioFragment
+import com.tg.electroaires.ui.fragment.UsuarioFragment
 import com.tg.electroaires.ui.fragment.ValoracionesFragment
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -72,9 +75,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_addservicio -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, AddServicioFragment()).commit()
             R.id.nav_searchvehiculo -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, AddServicioFragment()).commit()
+                .replace(R.id.fragment_container, BuscarVehiculoFragment()).commit()
             R.id.nav_valoraciones -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, ValoracionesFragment()).commit()
+            R.id.nav_user -> supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, UsuarioFragment()).commit()
             R.id.nav_logout -> finalizarActivity()
         }
         drawerLayout.closeDrawer(GravityCompat.START)

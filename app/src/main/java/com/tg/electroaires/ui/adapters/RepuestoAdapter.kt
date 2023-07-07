@@ -47,20 +47,20 @@ class RepuestoAdapter(private val context: Context,
         holder.itemView.findViewById<ImageButton>(R.id.btnDelete).setOnClickListener {
             // Crear un layout para el cuadro de diálogo
             val alertDialogBuilder = AlertDialog.Builder(holder.itemView.context)
-            alertDialogBuilder.setTitle("Confirmación")
-            alertDialogBuilder.setMessage("¿Estás seguro de que deseas eliminar este repuesto?")
-            alertDialogBuilder.setPositiveButton("Sí") { dialog, _ ->
+            .setTitle("Confirmación")
+            .setMessage("¿Estás seguro de que deseas eliminar este repuesto?")
+            .setPositiveButton("Sí") { dialog, _ ->
 
                 // Realizar la solicitud de eliminar a la API
                 solicitarDelete(detail.id)
 
                 dialog.dismiss() // Cerrar el cuadro de diálogo
             }
-            alertDialogBuilder.setNegativeButton("No") { dialog, _ ->
+            .setNegativeButton("No") { dialog, _ ->
                 dialog.dismiss() // Cerrar el cuadro de diálogo
             }
-            val alertDialog = alertDialogBuilder.create()
-            alertDialog.show()
+            .create()
+            alertDialogBuilder.show()
         }
 
         // Agregar el clic del botón Delete

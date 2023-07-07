@@ -48,7 +48,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TextContrastCheck" />
 
-    <TextView
+    <!--TextView
         android:id="@+id/textViewRecuperarContrasena"
         style="underline"
         android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" /-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -78,7 +78,8 @@
             android:layout_height="55dp"
             android:layout_marginBottom="28dp"
             android:hint="@string/ingresa_tu_contrase_a"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:background="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -94,10 +95,12 @@
             android:id="@+id/textInputEmail"
             android:layout_width="289dp"
             android:layout_height="wrap_content"
-            android:hint="@string/ingresa_tu_e_mail"
-            android:inputType="textEmailAddress"
+            android:hint="@string/ingresa_tu_cedula"
+            android:inputType="number"
             android:textColorHint="#616161"
-            tools:ignore="TextContrastCheck,TextContrastCheck" />
+            tools:ignore="TextContrastCheck,TextContrastCheck"
+            android:background="@color/white"
+            android:maxLength="10"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <ProgressBar

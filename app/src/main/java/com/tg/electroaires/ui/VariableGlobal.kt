@@ -2,6 +2,7 @@ package com.tg.electroaires.ui
 
 class VariableGlobal private constructor() {
     var nombreUsuario: String? = null
+    var cedula: Long? = null
 
     companion object {
         private var instance: VariableGlobal? = null

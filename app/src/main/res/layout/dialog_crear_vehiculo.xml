@@ -9,17 +9,25 @@
         android:id="@+id/textViewTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="NUEVA CANTIDAD DE REPUESTO"
+        android:text="CREACIÓN VEHICULO"
         android:gravity="center"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/nombreCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nueva cantidad usada"
-        android:inputType="number" />
+        android:hint="Placa"
+        android:inputType="textCapCharacters"
+        android:maxLength="6"/>
+
+    <EditText
+        android:id="@+id/cedulaCliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tipo"
+        android:inputType="textCapWords"/>
 
 
 </LinearLayout>
