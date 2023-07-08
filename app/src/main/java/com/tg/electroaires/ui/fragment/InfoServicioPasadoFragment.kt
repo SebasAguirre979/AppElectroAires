@@ -47,6 +47,9 @@ class InfoServicioPasadoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Establecer el título de la ActionBar
+        (activity as AppCompatActivity).supportActionBar?.setTitle("Información servicio pasado")
+
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_info_servicio_pasado, container, false)
 
@@ -66,6 +69,15 @@ class InfoServicioPasadoFragment : Fragment() {
 
         val addRepuesto: FloatingActionButton = view.findViewById(R.id.addServicioPasado)
         addRepuesto.setOnClickListener {
+
+            val fragmentManager = (context as AppCompatActivity).supportFragmentManager
+            val fragment = AddServicioFragment()
+
+            // Reemplaza el fragmento actual con el nuevo fragmento
+            fragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
 
         }
 

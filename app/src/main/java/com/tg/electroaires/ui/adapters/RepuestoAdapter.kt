@@ -68,24 +68,54 @@ class RepuestoAdapter(private val context: Context,
             // Crear un layout personalizado para el cuadro de diálogo
             val dialogView = LayoutInflater.from(holder.itemView.context).inflate(R.layout.dialog_edit_repuesto, null)
             // Obtener referencias a los elementos del layout
-            val editText = dialogView.findViewById<EditText>(R.id.editText)
+            val editTextNewCantidad = dialogView.findViewById<EditText>(R.id.editTextNewCantidad)
             val alertDialogBuilder  = AlertDialog.Builder(context)
+
             alertDialogBuilder.setView(dialogView)
-                .setPositiveButton("Aceptar") { dialog, _ ->
-
-                    // Realizar acción con el valor ingresado
-                    val valorIngresado = editText.text.toString().toInt()
-                    // Realizar la solicitud de actualizar a la API
-                    solicitarEdicion((detail.id), valorIngresado)
-                    dialog.dismiss() // Cerrar el cuadro de diálogo
-
-                }
+                .setPositiveButton("Aceptar", null)
                 .setNegativeButton("Cancelar") { dialog, _ ->
                     dialog.dismiss()
                 }
 
             // Mostrar el cuadro de diálogo
             val alertDialog = alertDialogBuilder.create()
+
+            // Sobrescribir el OnClickListener del botón "Aceptar"
+            alertDialog.setOnShowListener {
+                val acceptButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                acceptButton.setOnClickListener {
+                    val valorIngresadoText = editTextNewCantidad.text.toString()
+
+                    if (valorIngresadoText.isNotEmpty()) {
+                        val valorIngresado = valorIngresadoText.toInt()
+                        solicitarEdicion((detail.id), valorIngresado)
+                        alertDialog.dismiss() // Cerrar manualmente el cuadro de diálogo
+                    } else {
+                        Toast.makeText(context, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            /*alertDialogBuilder.setView(dialogView)
+                .setPositiveButton("Aceptar") { dialog, _ ->
+
+                    // Realizar acción con el valor ingresado
+                    val valorIngresadoText = editTextNewCantidad.text.toString()
+                    if (valorIngresadoText.isNotEmpty()) {
+                        val valorIngresado = valorIngresadoText.toInt()
+                        solicitarEdicion((detail.id), valorIngresado)
+                        dialog.dismiss() // Cerrar el cuadro de diálogo
+                    } else {
+                        Toast.makeText(context, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
+                    }
+
+
+                }
+                .setNegativeButton("Cancelar") { dialog, _ ->
+                    dialog.dismiss()
+                }*/
+
+
             alertDialog.show()
             // Lógica para eliminar el detalle del servicio
             // Puedes mostrar un cuadro de diálogo de confirmación antes de eliminarlo

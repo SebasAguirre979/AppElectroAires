@@ -79,6 +79,7 @@ class InfoServicioFragment : Fragment() {
         val activity = requireActivity() as AppCompatActivity
         activity.setSupportActionBar(view.findViewById(R.id.toolbar2))
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        activity.supportActionBar?.setTitle("Información servicio")
 
         // Ocultar el toolbar personalizado del HomeActivity
         val homeToolbar = activity.findViewById<Toolbar>(R.id.toolbar)
@@ -117,25 +118,62 @@ class InfoServicioFragment : Fragment() {
 
             val botonBuscar = dialogView.findViewById<ImageButton>(R.id.buscarRepuestoBoton)
             botonBuscar.setOnClickListener{
-                val idABuscar = dialogView.findViewById<EditText>(R.id.idRepuesto).text.toString().toInt()
-                cargarUnRepuestos(dialogView, idABuscar)
+                val idABuscarText = dialogView.findViewById<EditText>(R.id.idRepuesto).text.toString()
+
+                if (idABuscarText.isNotEmpty()) {
+                    val idABuscar = idABuscarText.toInt()
+                    cargarUnRepuestos(dialogView, idABuscar)
+                } else {
+                    Toast.makeText(context, "Por favor, complete el campo con un ID de repuesto", Toast.LENGTH_SHORT).show()
+                }
             }
 
             alertDialogBuilder.setView(dialogView)
+                .setPositiveButton("Aceptar", null)
+                .setNegativeButton("Cancelar") { dialog, _ ->
+                    dialog.dismiss()
+                }
+
+            // Mostrar el cuadro de diálogo
+            val alertDialog = alertDialogBuilder.create()
+
+            alertDialog.setOnShowListener {
+                val acceptButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                acceptButton.setOnClickListener {
+                    val cantidadRepuestoAddText = dialogView.findViewById<EditText>(R.id.cantidaRepuesto).text.toString()
+                    val idABuscarText = dialogView.findViewById<EditText>(R.id.idRepuesto).text.toString()
+
+                    if (cantidadRepuestoAddText.isNotEmpty() && idABuscarText.isNotEmpty()) {
+                        val cantidadRepuestoAdd = cantidadRepuestoAddText.toInt()
+                        val idABuscar = idABuscarText.toInt()
+                        postRepuestoServicio(idABuscar, cantidadRepuestoAdd)
+                        alertDialog.dismiss() // Cerrar manualmente el cuadro de diálogo
+                    } else {
+                        Toast.makeText(context, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            /*alertDialogBuilder.setView(dialogView)
                 .setPositiveButton("Aceptar") { dialog, _ ->
-                    val cantidadRepuestoAdd = dialogView.findViewById<EditText>(R.id.cantidaRepuesto).text.toString().toInt()
-                    val idABuscar = dialogView.findViewById<EditText>(R.id.idRepuesto).text.toString().toInt()
-                    postRepuestoServicio(idABuscar, cantidadRepuestoAdd)
-                    dialog.dismiss() // Cerrar el cuadro de diálogo
+                    val cantidadRepuestoAddText = dialogView.findViewById<EditText>(R.id.cantidaRepuesto).text.toString()
+                    val idABuscarText = dialogView.findViewById<EditText>(R.id.idRepuesto).text.toString()
+
+                    if (cantidadRepuestoAddText.isNotEmpty() && idABuscarText.isNotEmpty()) {
+                        val cantidadRepuestoAdd = cantidadRepuestoAddText.toInt()
+                        val idABuscar = idABuscarText.toInt()
+                        postRepuestoServicio(idABuscar, cantidadRepuestoAdd)
+                        dialog.dismiss() // Cerrar el cuadro de diálogo
+                    } else {
+                        Toast.makeText(context, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
+                    }
 
                 }
                 .setNegativeButton("Cancelar") { dialog, _ ->
                     dialog.dismiss()
 
-                }
+                }*/
 
-            // Mostrar el cuadro de diálogo
-            val alertDialog = alertDialogBuilder.create()
             alertDialog.show()
             // Lógica para eliminar el detalle del servicio
             // Puedes mostrar un cuadro de diálogo de confirmación antes de eliminarlo

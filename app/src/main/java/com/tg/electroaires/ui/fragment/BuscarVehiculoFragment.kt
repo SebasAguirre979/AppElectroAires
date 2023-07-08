@@ -69,9 +69,14 @@ class BuscarVehiculoFragment : Fragment() {
         botonBusqueda.setOnClickListener{
             val placaABuscar = view.findViewById<TextInputEditText>(R.id.editTextBusquedaPlaca).text.toString()
 
-            // Hacemos el llamado a la funcion de listar
-            ListarServicios(placaABuscar)
-            vaciarCampos()
+            if (placaABuscar.isNotEmpty() && placaABuscar.length == 6){
+                // Hacemos el llamado a la funcion de listar
+                ListarServicios(placaABuscar)
+                vaciarCampos()
+            }else{
+                Toast.makeText(context, "Agrega una placa valida", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
         // Enlazamos el actualizar al fragmente
@@ -131,7 +136,7 @@ class BuscarVehiculoFragment : Fragment() {
                         recyclerView.adapter = busquedaServicioAdapter
                     }
                 } else {
-                    Toast.makeText(context, "Error al agregar al mostrar las valoraciones", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Error al mostrar los servicios de este vehiculo", Toast.LENGTH_SHORT).show()
                     progressBar?.visibility = View.GONE
                 }
             }
