@@ -1,115 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.fragment.UsuarioFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textViewName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nombre"
-            android:textSize="25sp"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center"/>
-
-        <TextView
-            android:id="@+id/textViewCedula"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cédula"
-            android:textSize="25sp"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center"/>
-
-
-        <!-- Campo para contraseña anterior -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutOldPassword"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:endIconMode="password_toggle"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="40dp">
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextOldPassword"
+            <TextView
+                android:id="@+id/textViewName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="Nombre"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textViewCedula"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="Cédula"
+                android:textSize="25sp" />
+
+
+            <!-- Campo para contraseña anterior -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutOldPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Contraseña anterior"
-                android:inputType="textPassword"
-                android:backgroundTint="@color/white"
-                android:layout_margin="10dp"/>
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="10dp"
+                app:endIconMode="password_toggle">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextOldPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/white"
+                    android:hint="Contraseña anterior"
+                    android:inputType="textPassword" />
 
-        <!-- Campo para nueva contraseña -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutNewPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endIconMode="password_toggle"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="40dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextNewPassword"
+            <!-- Campo para nueva contraseña -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutNewPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nueva contraseña"
-                android:inputType="textPassword"
-                android:backgroundTint="@color/white"
-                android:layout_margin="10dp"/>
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="10dp"
+                app:endIconMode="password_toggle">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextNewPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/white"
+                    android:hint="Nueva contraseña"
+                    android:inputType="textPassword" />
 
-        <!-- Campo para confirmar contraseña -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutConfirmPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endIconMode="password_toggle"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="40dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextConfirmPassword"
+            <!-- Campo para confirmar contraseña -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Confirmar contraseña"
-                android:inputType="textPassword"
-                android:backgroundTint="@color/white"
-                android:layout_margin="10dp"/>
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="10dp"
+                app:endIconMode="password_toggle">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/white"
+                    android:hint="Confirmar contraseña"
+                    android:inputType="textPassword" />
 
-        <!-- Botón para cambiar contraseña -->
-        <Button
-            android:id="@+id/buttonChangePassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cambiar contraseña"
-            android:layout_marginTop="16dp"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/blue_200"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <!--Button
-            android:id="@+id/buttonToken"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Token"
-            android:layout_marginTop="16dp"
-            android:layout_gravity="center"/-->
+            <!-- Botón para cambiar contraseña -->
+            <Button
+                android:id="@+id/buttonChangePassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/blue_200"
+                android:text="Cambiar contraseña" />
 
-    </LinearLayout>
+            <!--Button
+                android:id="@+id/buttonToken"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Token"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center"/-->
 
+        </LinearLayout>
 
+    </ScrollView>
 
 </RelativeLayout>

@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.recreate
 import com.tg.electroaires.R
 import com.tg.electroaires.io.RetrofitClient
@@ -34,6 +35,8 @@ class UsuarioFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Establecer el título de la ActionBar
+        (activity as AppCompatActivity).supportActionBar?.setTitle("Cambio de contraseña")
 
         val view = inflater.inflate(R.layout.fragment_usuario, container, false)
 

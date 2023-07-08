@@ -79,6 +79,7 @@ class InfoServicioFragment : Fragment() {
         val activity = requireActivity() as AppCompatActivity
         activity.setSupportActionBar(view.findViewById(R.id.toolbar2))
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        activity.supportActionBar?.setTitle("Información servicio")
 
         // Ocultar el toolbar personalizado del HomeActivity
         val homeToolbar = activity.findViewById<Toolbar>(R.id.toolbar)
