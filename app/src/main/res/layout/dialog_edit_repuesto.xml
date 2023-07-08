@@ -15,7 +15,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editTextNewCantidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nueva cantidad usada"

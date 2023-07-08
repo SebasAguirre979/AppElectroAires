@@ -15,7 +15,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/nombreCliente"
+        android:id="@+id/placaVehiculo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Placa"
@@ -23,7 +23,7 @@
         android:maxLength="6"/>
 
     <EditText
-        android:id="@+id/cedulaCliente"
+        android:id="@+id/tipoVehiculo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tipo"

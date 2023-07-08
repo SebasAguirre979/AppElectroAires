@@ -59,3 +59,10 @@ data class putServicio(
     val cliente: String,
     val s_vehiculo: String,
 )
+
+data class postServicio(
+    val s_descripcion: String,
+    val s_mano_obra: Double,
+    val cliente: Long,
+    val s_vehiculo: String,
+)

@@ -83,7 +83,7 @@ class UsuarioFragment : Fragment() {
 
         }
 
-        //PRUEBAS PARA PEDIR TOKEN
+        /*//PRUEBAS PARA PEDIR TOKEN
         val botonTokenn = view.findViewById<Button>(R.id.buttonToken)
         botonTokenn.setOnClickListener{
 
@@ -91,7 +91,7 @@ class UsuarioFragment : Fragment() {
                 Log.d("PETICIONTOKEN","${AdminToken.getAccessToken()}")
             }
 
-        }
+        }*/
 
         setHasOptionsMenu(true)
 
