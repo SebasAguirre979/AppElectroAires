@@ -1,9 +1,7 @@
 package com.tg.electroaires.io
 
 import com.tg.electroaires.model.PostValoraciones
-import com.tg.electroaires.model.Repuesto
 import com.tg.electroaires.model.Valoraciones
-import com.tg.electroaires.model.createRepuesto
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET

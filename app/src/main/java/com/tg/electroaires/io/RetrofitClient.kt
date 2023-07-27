@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    private const val BASE_URL = "http://electroaires.herokuapp.com/" // Reemplaza con la dirección de tu API
+    private const val BASE_URL = "https://api-electroaires-30a0049f64a4.herokuapp.com/" // Reemplaza con la dirección de tu API
 
     private val retrofit: Retrofit by lazy {
         try {

@@ -3,7 +3,6 @@ package com.tg.electroaires.ui.adapters
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.tg.electroaires.R
-import com.tg.electroaires.model.Servicio
 import com.tg.electroaires.model.ServicioCompleto
-import com.tg.electroaires.ui.fragment.InfoServicioFragment
 import com.tg.electroaires.ui.fragment.InfoServicioPasadoFragment
 import java.time.LocalDateTime
 import java.time.ZoneId

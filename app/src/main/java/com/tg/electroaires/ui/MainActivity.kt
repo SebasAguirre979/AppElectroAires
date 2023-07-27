@@ -2,24 +2,17 @@ package com.tg.electroaires.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import com.google.android.material.navigation.NavigationView
 import com.google.android.material.textfield.TextInputEditText
 import com.tg.electroaires.R
 import com.tg.electroaires.io.RetrofitClient.usuarioApi
 import com.tg.electroaires.model.DatosLogin
-import com.tg.electroaires.ui.fragment.InfoServicioFragment
-import com.tg.electroaires.ui.fragment.ServicioFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -44,9 +37,7 @@ class MainActivity : AppCompatActivity() {
         //Boton con Validacion de datos para iniciar sesion
         botonIniciarSesion.setOnClickListener {
             val username = editTextUsername.text.toString()
-            Log.d("MiApp", "El valor de username es: " + username.toString())
             val password = editTextPassword.text.toString()
-            Log.d("MiApp", "El valor de password es: " + password)
 
             // Verificar si el campo cedula esta vacio
             var usernameInput: Long? = null
@@ -62,8 +53,6 @@ class MainActivity : AppCompatActivity() {
                 // Manejar el caso de una cédula no válida
                 Toast.makeText(this@MainActivity, "Ingresa un valor valido", Toast.LENGTH_SHORT).show()
             }
-
-            //verificarRegistroUsuario("admin@gmail.com", "admin")
         }
 
         /*//Boton en texto para olvide mi contraseña
@@ -101,18 +90,24 @@ class MainActivity : AppCompatActivity() {
                     val usuarioResponse = response.body()
                     if (usuarioResponse != null) {
                         Log.d("Login", "Nombre: ${usuarioResponse.nombre}")
+                        val rol = usuarioResponse.rol
 
-                        Toast.makeText(this@MainActivity, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@MainActivity, HomeActivity::class.java)
-                        startActivity(intent)
+                        if(rol == "Admin" ){
+                            Toast.makeText(this@MainActivity, "Usuario con rol no autorizado", Toast.LENGTH_SHORT).show()
+                            progressBar.visibility = View.GONE
+                        }else{
+                            Toast.makeText(this@MainActivity, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@MainActivity, HomeActivity::class.java)
+                            startActivity(intent)
 
-                        //Asignar a la variableGlobal el nombre de usuario para mostrar
-                        val singleton = VariableGlobal.getInstance()
-                        singleton.nombreUsuario = usuarioResponse.nombre
-                        singleton.cedula = usuarioResponse.cedula
+                            //Asignar a la variableGlobal el nombre de usuario para mostrar
+                            val singleton = VariableGlobal.getInstance()
+                            singleton.nombreUsuario = usuarioResponse.nombre
+                            singleton.cedula = usuarioResponse.cedula
 
-                        progressBar.visibility = View.GONE
-                        finishAffinity()
+                            progressBar.visibility = View.GONE
+                            finishAffinity()
+                        }
                     }
                 } else {
                     if (response.code() == 400) {
@@ -130,22 +125,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    //Trae todos los usuarios registrados desde el API
-    private fun traerUsuarios(){
-        GlobalScope.launch(Dispatchers.Main) {
-            try {
-                val usuarios = usuarioApi.obtenerUsuarios()
-                for (usuario in usuarios) {
-                    Log.d("Usuarios", "ID: ${usuario.id}, Nombre: ${usuario.nombre}, Correo: ${usuario.correo}")
-                }
-            } catch (e: Exception) {
-                Log.e("Usuarios", "Error al obtener los usuarios: ${e.message}")
-            }
-        }
-
-    }
-
-
-
 }

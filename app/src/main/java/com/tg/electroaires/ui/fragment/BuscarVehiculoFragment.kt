@@ -1,9 +1,7 @@
 package com.tg.electroaires.ui.fragment
 
-import android.accessibilityservice.GestureDescription.StrokeDescription
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -16,22 +14,14 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.textfield.TextInputEditText
 import com.tg.electroaires.R
 import com.tg.electroaires.io.RetrofitClient
-import com.tg.electroaires.model.Servicio
 import com.tg.electroaires.model.ServicioCompleto
-import com.tg.electroaires.model.Valoraciones
 import com.tg.electroaires.ui.adapters.BusquedaServicioAdapter
-import com.tg.electroaires.ui.adapters.ServicioAdapter
-import com.tg.electroaires.ui.adapters.ValoracionAdapter
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

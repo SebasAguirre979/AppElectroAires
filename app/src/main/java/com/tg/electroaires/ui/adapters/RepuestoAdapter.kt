@@ -40,7 +40,7 @@ class RepuestoAdapter(private val context: Context,
     override fun onBindViewHolder(holder: ServiceDetailViewHolder, position: Int) {
         val detail = details[position]
         holder.txtRepuesto.text = "Repuesto: ${detail.r_nombre_repuesto}"
-        holder.txtCantidad.text = "Valor: ${detail.r_valor_publico}"
+        holder.txtCantidad.text = "Valor: ${detail.ds_valor_publico}"
         holder.txtValor.text = "Cantidad: ${detail.s_cantidad}"
 
         // Agregar el clic del botón Edit
