@@ -13,11 +13,9 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat.recreate
 import com.tg.electroaires.R
 import com.tg.electroaires.io.RetrofitClient
 import com.tg.electroaires.model.CambioContrasena
-import com.tg.electroaires.model.putServicio
 import com.tg.electroaires.ui.AdminToken
 import com.tg.electroaires.ui.VariableGlobal
 import retrofit2.Call

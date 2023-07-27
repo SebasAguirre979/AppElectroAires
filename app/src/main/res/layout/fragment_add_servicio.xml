@@ -122,11 +122,13 @@
             <EditText
                 android:id="@+id/descripcionServicio"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="80dp"
                 android:layout_weight="1"
                 android:background="@color/silver"
                 android:hint="Descripción..."
-                android:inputType="textCapSentences" />
+                android:maxLength="100"
+                android:maxLines="5"
+                android:inputType="textCapSentences|textMultiLine" />
 
         </LinearLayout>
 

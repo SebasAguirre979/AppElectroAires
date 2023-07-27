@@ -9,13 +9,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.RatingBar
-import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
@@ -28,12 +25,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.tg.electroaires.R
 import com.tg.electroaires.io.RetrofitClient
-import com.tg.electroaires.io.RetrofitClient.repuestoApi
 import com.tg.electroaires.io.RetrofitClient.servicioApi
 import com.tg.electroaires.io.RetrofitClient.valoracionApi
 import com.tg.electroaires.model.PostValoraciones
 import com.tg.electroaires.model.Repuesto
-import com.tg.electroaires.model.Valoraciones
 import com.tg.electroaires.model.createRepuesto
 import com.tg.electroaires.model.putServicio
 import com.tg.electroaires.ui.HomeActivity
@@ -48,7 +43,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.time.LocalDateTime
 import java.time.ZoneId
-import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
 class InfoServicioFragment : Fragment() {
@@ -193,53 +187,63 @@ class InfoServicioFragment : Fragment() {
 
         // Boton finalizar servicio
         view.findViewById<Button>(R.id.finalizarBoton).setOnClickListener {
+            //Abrir dialog valoraciones
+            val dialogViewFinalizarManoObra = LayoutInflater.from(context).inflate(R.layout.dialog_finalizar_servicio_campo_manoobra, null)
             // Crear un layout para el cuadro de diálogo
-            val alertDialogBuilder = androidx.appcompat.app.AlertDialog.Builder(view.context)
-            alertDialogBuilder.setTitle("Confirmación")
-            alertDialogBuilder.setMessage("¿Estás seguro de que deseas finalizar este servicio?")
-            alertDialogBuilder.setPositiveButton("Sí") { dialog, _ ->
+            val alertDialogBuilderFinalizarManoObra = AlertDialog.Builder(context)
+            val manoObraAnterior = view?.findViewById<TextView>(R.id.textManoObra)?.text
+            val manoObra = dialogViewFinalizarManoObra.findViewById<EditText>(R.id.nuevoCostoManoDeObra)
+            manoObra.setText(manoObraAnterior)
 
-                // Realizar la solicitud de eliminar a la API
-                finalizarServicio()
-                dialog.dismiss() // Cerrar el cuadro de diálogo
+            alertDialogBuilderFinalizarManoObra.setView(dialogViewFinalizarManoObra)
+                .setPositiveButton("Aceptar") { dialog, _ ->
+                    val nuevoManoObraText = manoObra.text.toString()
 
-
-                //Abrir dialog valoraciones
-                val dialogViewValoraciones = LayoutInflater.from(context).inflate(R.layout.dialog_valoraciones, null)
-                // Obtener referencias a los elementos del layout
-                val alertDialogBuilderValoraciones  = AlertDialog.Builder(context)
-
-                alertDialogBuilderValoraciones.setView(dialogViewValoraciones)
-                    .setPositiveButton("Aceptar") { dialog, _ ->
-                        val calificacion = dialogViewValoraciones.findViewById<RatingBar>(R.id.ratingBarValoracion).rating.toInt()
-                        val descripcionValoracion = dialogViewValoraciones.findViewById<EditText>(R.id.descripcionValoracion).text.toString()
-                        // Obtén el ID del servicio pasado desde el adaptador
-                        val serviceId = arguments?.getInt("serviceId")?:0
-
-                        Log.d("Valoracion", "cal: $calificacion desc:$descripcionValoracion ser:$serviceId")
-
-                        postValoracionServicio(calificacion, descripcionValoracion, serviceId)
-                        resumenServicio()
+                    if (nuevoManoObraText.isNotEmpty()){
+                        val nuevoManoObra = nuevoManoObraText.toDouble()
+                        // Realizar la solicitud de eliminar a la API
+                        finalizarServicio(nuevoManoObra)
                         dialog.dismiss() // Cerrar el cuadro de diálogo
 
+                        //Abrir dialog valoraciones
+                        val dialogViewValoraciones = LayoutInflater.from(context).inflate(R.layout.dialog_valoraciones, null)
+                        // Obtener referencias a los elementos del layout
+                        val alertDialogBuilderValoraciones  = AlertDialog.Builder(context)
 
-                    }
-                    .setNegativeButton("Cancelar") { dialog, _ ->
-                        resumenServicio()
-                        dialog.dismiss()
-                    }
-                // Mostrar el cuadro de diálogo
-                val alertDialog = alertDialogBuilderValoraciones.create()
-                alertDialog.show()
+                        alertDialogBuilderValoraciones.setView(dialogViewValoraciones)
+                            .setPositiveButton("Aceptar") { dialog, _ ->
+                                val calificacion = dialogViewValoraciones.findViewById<RatingBar>(R.id.ratingBarValoracion).rating.toInt()
+                                val descripcionValoracion = dialogViewValoraciones.findViewById<EditText>(R.id.descripcionValoracion).text.toString()
+                                // Obtén el ID del servicio pasado desde el adaptador
+                                val serviceId = arguments?.getInt("serviceId")?:0
 
+                                Log.d("Valoracion", "cal: $calificacion desc:$descripcionValoracion ser:$serviceId")
+
+                                postValoracionServicio(calificacion, descripcionValoracion, serviceId)
+                                resumenServicio()
+                                dialog.dismiss() // Cerrar el cuadro de diálogo
+
+
+                            }
+                            .setNegativeButton("Cancelar") { dialog, _ ->
+                                resumenServicio()
+                                dialog.dismiss()
+                            }
+                        // Mostrar el cuadro de diálogo
+                        val alertDialog = alertDialogBuilderValoraciones.create()
+                        alertDialog.show()
+
+                    } else{
+                        Toast.makeText(context, "Por favor, ingrese un valor valido", Toast.LENGTH_LONG).show()
+                    }
 
             }
-            alertDialogBuilder.setNegativeButton("No") { dialog, _ ->
+            alertDialogBuilderFinalizarManoObra.setNegativeButton("Cancelar") { dialog, _ ->
                 dialog.dismiss() // Cerrar el cuadro de diálogo
 
 
             }
-            val alertDialog = alertDialogBuilder.create()
+            val alertDialog = alertDialogBuilderFinalizarManoObra.create()
             alertDialog.show()
         }
 
@@ -270,7 +274,7 @@ class InfoServicioFragment : Fragment() {
                         if (service?.s_fecha_salida == null){
                             view?.findViewById<TextView>(R.id.textFechaSalida)?.text = ""
                         }else{
-                            view?.findViewById<TextView>(R.id.textFechaSalida)?.text = convertirHora(service.s_fecha_entrada.toString())
+                            view?.findViewById<TextView>(R.id.textFechaSalida)?.text = convertirHora(service.s_fecha_salida.toString())
                         }
 
                         view?.findViewById<TextView>(R.id.textTotal)?.text = "${service?.s_total}"
@@ -278,9 +282,6 @@ class InfoServicioFragment : Fragment() {
                         val recyclerViewDetails = view?.findViewById<RecyclerView>(R.id.recyclerViewDetails)
                         recyclerViewDetails?.layoutManager = LinearLayoutManager(requireActivity())
                         recyclerViewDetails?.adapter = RepuestoAdapter(requireContext(), this@InfoServicioFragment, service?.detalles_servicio ?: emptyList())
-
-                        // Actualiza la interfaz de usuario en el hilo principal
-                        // por ejemplo, muestra los detalles del servicio y configura los botones CRUD
 
                     }
                 } else {
@@ -291,16 +292,11 @@ class InfoServicioFragment : Fragment() {
             }
         }
     }
-    // Realiza una solicitud a la API para obtener la información completa del servicio según el ID
-    // Puedes usar Retrofit o cualquier otra biblioteca para realizar la solicitud
-
-    // Una vez que obtengas la información completa del servicio, actualiza tu interfaz de usuario en consecuencia
-    // Por ejemplo, muestra los detalles del servicio y configura los botones para CRUD
 
     fun obtenerRepuestos(
         onSuccess: (List<Repuesto>) -> Unit,
         onError: () -> Unit
-    ){
+        ){
         val apiService = RetrofitClient.repuestoApi
 
         val call = apiService.getRepuestos()
@@ -322,53 +318,6 @@ class InfoServicioFragment : Fragment() {
             }
         })
     }
-
-    /*private fun cargarRepuestos(dialogView: View) {
-        obtenerRepuestos(
-            onSuccess = { repuestos ->
-                // Lógica para manejar los repuestos obtenidos
-
-                val nombresRepuestos = repuestos.map { it.r_nombre_repuesto }
-                val idRepuesto = repuestos.map {it.id}
-                val stockRepuesto = repuestos.map {it.r_cantidad}
-
-                val spinner = dialogView.findViewById<Spinner>(R.id.spinner)
-
-                val adapter = ArrayAdapter(
-                    dialogView.context,
-                    android.R.layout.simple_spinner_item,
-                    nombresRepuestos,
-                )
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spinner.adapter = adapter
-
-                spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(
-                        parent: AdapterView<*>,
-                        view: View?,
-                        position: Int,
-                        id: Long
-                    ) {
-                        val nombreSeleccionado = nombresRepuestos[position]
-                        val idSeleccionado = idRepuesto[position]
-                        val stockSeleccionado = stockRepuesto[position]
-                        dialogView.findViewById<TextView>(R.id.idRepuesto).text = "$idSeleccionado"
-                        dialogView.findViewById<TextView>(R.id.idAdd).text = "$idSeleccionado"
-                        dialogView.findViewById<TextView>(R.id.nombreAdd).text = "$nombreSeleccionado"
-                        dialogView.findViewById<TextView>(R.id.cantidadAdd).text = "$stockSeleccionado"
-                        // Realiza la acción deseada con el nombre seleccionado en el Spinner
-                    }
-
-                    override fun onNothingSelected(parent: AdapterView<*>) {
-                        // Maneja el caso en que no se seleccione ningún elemento del Spinner
-                    }
-                }
-            },
-            onError = {
-                // Lógica para manejar el error en la obtención de los repuestos
-            }
-        )
-    }*/
 
     private fun cargarUnRepuestos(dialogView: View, id: Int) {
         obtenerRepuestos(
@@ -428,20 +377,15 @@ class InfoServicioFragment : Fragment() {
         datosServicio()
     }
 
-    private fun finalizarServicio(){
+    private fun finalizarServicio(manoObra: Double){
         val descripcion = view?.findViewById<TextView>(R.id.textDescripcion)?.text.toString()
-        var mano_obra = view?.findViewById<TextView>(R.id.textManoObra)?.text.toString().toDouble()
         val estado = false
         val cliente = view?.findViewById<TextView>(R.id.textCedula)?.text.toString()
         val vehiculo = view?.findViewById<TextView>(R.id.textPlaca)?.text.toString()
 
-        if(mano_obra == 0.0){
-            mano_obra = 0.0
-        }
-
         // Obtén el ID del servicio pasado desde el adaptador
         val serviceId = arguments?.getInt("serviceId")?:0
-        val data = putServicio(descripcion, mano_obra, estado, cliente, vehiculo)
+        val data = putServicio(descripcion, manoObra, estado, cliente, vehiculo)
 
         Log.d("PutServicio", "$data")
 
@@ -519,7 +463,7 @@ class InfoServicioFragment : Fragment() {
                         if (service?.s_fecha_salida == null){
                             dialogViewResumen?.findViewById<TextView>(R.id.textFechaSalida2)?.text = ""
                         }else{
-                            dialogViewResumen?.findViewById<TextView>(R.id.textFechaSalida2)?.text = convertirHora(service.s_fecha_entrada.toString())
+                            dialogViewResumen?.findViewById<TextView>(R.id.textFechaSalida2)?.text = convertirHora(service.s_fecha_salida.toString())
                         }
                         dialogViewResumen?.findViewById<TextView>(R.id.textTotal2)?.text = "${service?.s_total}"
 
@@ -561,7 +505,8 @@ class InfoServicioFragment : Fragment() {
         val zonaHorariaAPI = ZoneId.of("UTC")
         val zonaHorariaLocal = ZoneId.systemDefault()
 
-        val fechaAjustada = ZonedDateTime.of(fecha, zonaHorariaAPI).withZoneSameInstant(zonaHorariaLocal).toLocalDateTime()
+        val fechaAjustada = fecha.atZone(zonaHorariaAPI).withZoneSameInstant(zonaHorariaLocal).toLocalDateTime().minusHours(5)
+        //val fechaAjustada = ZonedDateTime.of(fecha, zonaHorariaAPI).withZoneSameInstant(zonaHorariaLocal).toLocalDateTime()
 
         val formatoDeseado = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
         val fechaFormateada = fechaAjustada.format(formatoDeseado)

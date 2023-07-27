@@ -16,7 +16,8 @@ data class DatosLogin(
 
 data class UsuarioResponse(
     val nombre: String,
-    val cedula: Long
+    val cedula: Long,
+    val rol: String
 )
 
 data class CambioContrasena(

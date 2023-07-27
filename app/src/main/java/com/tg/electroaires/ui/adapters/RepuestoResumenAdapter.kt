@@ -6,17 +6,13 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.tg.electroaires.R
 import com.tg.electroaires.model.DetalleServicio
 import com.tg.electroaires.ui.fragment.InfoServicioFragment
-import com.tg.electroaires.ui.fragment.InfoServicioPasadoFragment
 
 class RepuestoResumenAdapter (private val context: Context,
                               private val fragment: InfoServicioFragment,
@@ -38,7 +34,7 @@ class RepuestoResumenAdapter (private val context: Context,
     override fun onBindViewHolder(holder: RepuestoResumenDetailViewHolder, position: Int) {
         val detail = details[position]
         holder.txtRepuesto.text = "Repuesto: ${detail.r_nombre_repuesto}"
-        holder.txtCantidad.text = "Valor: ${detail.r_valor_publico}"
+        holder.txtCantidad.text = "Valor: ${detail.ds_valor_publico}"
         holder.txtValor.text = "Cantidad: ${detail.s_cantidad}"
 
         holder.btnDelete.visibility = View.GONE

@@ -39,7 +39,7 @@ data class Vehiculo(
 data class DetalleServicio(
     val id: Int,
     val r_nombre_repuesto: String,
-    val r_valor_publico: Double,
+    val ds_valor_publico: Double,
     val s_cantidad: Int
 )
 

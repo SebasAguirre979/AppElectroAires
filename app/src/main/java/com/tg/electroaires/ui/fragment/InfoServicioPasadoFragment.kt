@@ -1,41 +1,28 @@
 package com.tg.electroaires.ui.fragment
 
-import android.app.AlertDialog
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.RatingBar
 import android.widget.TextView
-import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.tg.electroaires.R
 import com.tg.electroaires.io.RetrofitClient
-import com.tg.electroaires.ui.HomeActivity
-import com.tg.electroaires.ui.adapters.RepuestoAdapter
 import com.tg.electroaires.ui.adapters.RepuestoPasadoAdapter
-import com.tg.electroaires.ui.adapters.RepuestoResumenAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.time.LocalDateTime
 import java.time.ZoneId
-import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
 class InfoServicioPasadoFragment : Fragment() {
@@ -124,7 +111,7 @@ class InfoServicioPasadoFragment : Fragment() {
                         if (service?.s_fecha_salida == null){
                             view?.findViewById<TextView>(R.id.textFechaSalida)?.text = ""
                         }else{
-                            view?.findViewById<TextView>(R.id.textFechaSalida)?.text = convertirHora(service.s_fecha_entrada)
+                            view?.findViewById<TextView>(R.id.textFechaSalida)?.text = convertirHora(service.s_fecha_salida)
                         }
 
                         view?.findViewById<TextView>(R.id.textTotal)?.text = "${service?.s_total}"
@@ -160,7 +147,7 @@ class InfoServicioPasadoFragment : Fragment() {
         val zonaHorariaAPI = ZoneId.of("UTC")
         val zonaHorariaLocal = ZoneId.systemDefault()
 
-        val fechaAjustada = ZonedDateTime.of(fecha, zonaHorariaAPI).withZoneSameInstant(zonaHorariaLocal).toLocalDateTime()
+        val fechaAjustada = fecha.atZone(zonaHorariaAPI).withZoneSameInstant(zonaHorariaLocal).toLocalDateTime().minusHours(5)
 
         val formatoDeseado = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
         val fechaFormateada = fechaAjustada.format(formatoDeseado)
