@@ -34,131 +34,220 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="5dp"
-                    android:text="Cliente" />
-
-                <TextView
-                    android:id="@+id/textCliente"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/background_rounded" />
+                    android:text="Espacio"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="Cedula:" />
+                    android:layout_margin="11dp"/>
 
-                <TextView
-                    android:id="@+id/textCedula"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/background_rounded" />
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="5dp">
 
-                <TextView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:textSize="17sp"
+                        android:text="Cliente:" />
+
+                    <TextView
+                        android:id="@+id/textCliente"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="Celular:" />
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="5dp">
 
-                <TextView
-                    android:id="@+id/textCelular"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:textSize="17sp"
+                        android:text="Cedula:" />
+
+                    <TextView
+                        android:id="@+id/textCedula"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:textSize="17sp"
+                        android:text="Celular:" />
+
+                    <TextView
+                        android:id="@+id/textCelular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/background_rounded" />
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="5dp">
 
-                <TextView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:textSize="17sp"
+                        android:text="Placa:" />
+
+                    <TextView
+                        android:id="@+id/textPlaca"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:textSize="17sp"
+                        android:text="Tipo:" />
+
+                    <TextView
+                        android:id="@+id/textTipo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="Descripción:" />
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="5dp">
 
-                <TextView
-                    android:id="@+id/textDescripcion"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:textSize="17sp"
+                        android:text="Descripción:" />
+
+                    <TextView
+                        android:id="@+id/textDescripcion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:textSize="17sp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/background_rounded" />
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="5dp">
 
-                <TextView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:textSize="17sp"
+                        android:text="Ingreso:" />
+
+                    <TextView
+                        android:id="@+id/textFechaEntrada"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="Placa:" />
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="5dp">
 
-                <TextView
-                    android:id="@+id/textPlaca"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:textSize="17sp"
+                        android:text="Salida:" />
+
+                    <TextView
+                        android:id="@+id/textFechaSalida"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:textSize="17sp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/background_rounded" />
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="5dp">
 
-                <TextView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:textSize="17sp"
+                        android:text="Mano de Obra:" />
+
+                    <TextView
+                        android:id="@+id/textManoObra"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="Tipo:" />
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="5dp">
 
-                <TextView
-                    android:id="@+id/textTipo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/background_rounded" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:textSize="17sp"
+                        android:text="Subtotal:" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="Mano de Obra::" />
+                    <TextView
+                        android:id="@+id/textTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textManoObra"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/background_rounded" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="Fecha ingreso del vehiculo:" />
-
-                <TextView
-                    android:id="@+id/textFechaEntrada"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/background_rounded" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="Fecha salida del vehiculo:" />
-
-                <TextView
-                    android:id="@+id/textFechaSalida"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/background_rounded" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="Subtotal:" />
-
-                <TextView
-                    android:id="@+id/textTotal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/background_rounded" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/finalizarBoton"
@@ -172,6 +261,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="5dp"
+                    android:textSize="17sp"
+                    android:layout_marginVertical="5dp"
                     android:text="Repuestos:" />
 
                 <androidx.recyclerview.widget.RecyclerView

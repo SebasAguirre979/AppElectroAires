@@ -46,15 +46,10 @@ class ValoracionAdapter(private var valoraciones: List<Valoraciones>):
 
             val fechaOriginal = valoraciones.fecha
             val formatoOriginal = DateTimeFormatter.ISO_DATE_TIME
-            val fecha = LocalDateTime.parse(fechaOriginal, formatoOriginal)
-
-            val zonaHorariaAPI = ZoneId.of("UTC")
-            val zonaHorariaLocal = ZoneId.systemDefault()
-
-            val fechaAjustada = ZonedDateTime.of(fecha, zonaHorariaAPI).withZoneSameInstant(zonaHorariaLocal).toLocalDateTime()
+            val fechaEnZonaHoraria = ZonedDateTime.parse(fechaOriginal, formatoOriginal)
 
             val formatoDeseado = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
-            val fechaFormateada = fechaAjustada.format(formatoDeseado)
+            val fechaFormateada = fechaEnZonaHoraria.format(formatoDeseado)
 
             itemView.findViewById<TextView>(R.id.fechaValoracion).text = "Fecha: $fechaFormateada"
         }

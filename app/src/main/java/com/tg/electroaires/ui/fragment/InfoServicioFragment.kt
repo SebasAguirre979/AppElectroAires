@@ -272,7 +272,7 @@ class InfoServicioFragment : Fragment() {
                         view?.findViewById<TextView>(R.id.textFechaEntrada)?.text = convertirHora(service?.s_fecha_entrada.toString())
 
                         if (service?.s_fecha_salida == null){
-                            view?.findViewById<TextView>(R.id.textFechaSalida)?.text = ""
+                            view?.findViewById<TextView>(R.id.textFechaSalida)?.text = "Pendiente"
                         }else{
                             view?.findViewById<TextView>(R.id.textFechaSalida)?.text = convertirHora(service.s_fecha_salida.toString())
                         }
@@ -461,7 +461,7 @@ class InfoServicioFragment : Fragment() {
                         dialogViewResumen?.findViewById<TextView>(R.id.textManoObra2)?.text = "${service?.s_mano_obra}"
                         dialogViewResumen?.findViewById<TextView>(R.id.textFechaEntrada2)?.text = convertirHora(service?.s_fecha_entrada.toString())
                         if (service?.s_fecha_salida == null){
-                            dialogViewResumen?.findViewById<TextView>(R.id.textFechaSalida2)?.text = ""
+                            dialogViewResumen?.findViewById<TextView>(R.id.textFechaSalida2)?.text = "Pendiente"
                         }else{
                             dialogViewResumen?.findViewById<TextView>(R.id.textFechaSalida2)?.text = convertirHora(service.s_fecha_salida.toString())
                         }

@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tg.electroaires.R
 import com.tg.electroaires.model.Servicio
 import com.tg.electroaires.ui.fragment.InfoServicioFragment
-import java.time.LocalDateTime
-import java.time.ZoneId
+import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
 class ServicioAdapter(private var services: List<Servicio>) :
@@ -65,15 +64,10 @@ class ServicioAdapter(private var services: List<Servicio>) :
 
             val fechaOriginal = servicio.s_fecha_entrada
             val formatoOriginal = DateTimeFormatter.ISO_DATE_TIME
-            val fecha = LocalDateTime.parse(fechaOriginal, formatoOriginal)
-
-            val zonaHorariaAPI = ZoneId.of("UTC")
-            val zonaHorariaLocal = ZoneId.systemDefault()
-
-            val fechaAjustada = fecha.atZone(zonaHorariaAPI).withZoneSameInstant(zonaHorariaLocal).toLocalDateTime().minusHours(5)
+            val fechaEnZonaHoraria = ZonedDateTime.parse(fechaOriginal, formatoOriginal)
 
             val formatoDeseado = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
-            val fechaFormateada = fechaAjustada.format(formatoDeseado)
+            val fechaFormateada = fechaEnZonaHoraria.format(formatoDeseado)
 
             itemView.findViewById<TextView>(R.id.fechaIngreso).text = "Fecha Ingreso: $fechaFormateada"
 

@@ -72,7 +72,7 @@ class BusquedaServicioAdapter(private var services: List<ServicioCompleto>):
             val zonaHorariaAPI = ZoneId.of("UTC")
             val zonaHorariaLocal = ZoneId.systemDefault()
 
-            val fechaAjustada = ZonedDateTime.of(fecha, zonaHorariaAPI).withZoneSameInstant(zonaHorariaLocal).toLocalDateTime()
+            val fechaAjustada = fecha.atZone(zonaHorariaAPI).withZoneSameInstant(zonaHorariaLocal).toLocalDateTime().minusHours(5)
 
             val formatoDeseado = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
             val fechaFormateada = fechaAjustada.format(formatoDeseado)

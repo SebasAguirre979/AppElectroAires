@@ -28,7 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:hint="Escribenos tus sugerencias..."
-        android:background="@color/silver"
         android:layout_margin="5dp"/>
 
 </LinearLayout>
