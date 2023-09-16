@@ -124,7 +124,6 @@
                 android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:layout_weight="1"
-                android:background="@color/silver"
                 android:hint="Descripción..."
                 android:maxLength="100"
                 android:maxLines="5"

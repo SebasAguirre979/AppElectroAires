@@ -48,7 +48,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:backgroundTint="@color/white"
                     android:hint="Contraseña anterior"
                     android:inputType="textPassword" />
 
@@ -68,7 +67,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:backgroundTint="@color/white"
                     android:hint="Nueva contraseña"
                     android:inputType="textPassword" />
 
@@ -88,7 +86,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:backgroundTint="@color/white"
                     android:hint="Confirmar contraseña"
                     android:inputType="textPassword" />
 
@@ -102,6 +99,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@color/blue_200"
+                android:textColor="@color/white"
                 android:text="Cambiar contraseña" />
 
             <!--Button
