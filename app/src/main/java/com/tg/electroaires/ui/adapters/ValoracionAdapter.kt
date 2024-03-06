@@ -42,7 +42,12 @@ class ValoracionAdapter(private var valoraciones: List<Valoraciones>):
         fun bind(valoraciones: Valoraciones) {
             // Enlaza los datos del servicio al cardView
             itemView.findViewById<RatingBar>(R.id.calificacion).rating =  valoraciones.calificacion.toFloat()
-            itemView.findViewById<TextView>(R.id.opinion).text = "Opinion: " + valoraciones.opinion
+
+            val valoracion = valoraciones.opinion
+
+            if (valoracion.isNotEmpty()){
+                itemView.findViewById<TextView>(R.id.opinion).text = valoraciones.opinion
+            }else itemView.findViewById<TextView>(R.id.opinion).text = "Sin comentario"
 
             val fechaOriginal = valoraciones.fecha
             val formatoOriginal = DateTimeFormatter.ISO_DATE_TIME
@@ -51,7 +56,7 @@ class ValoracionAdapter(private var valoraciones: List<Valoraciones>):
             val formatoDeseado = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
             val fechaFormateada = fechaEnZonaHoraria.format(formatoDeseado)
 
-            itemView.findViewById<TextView>(R.id.fechaValoracion).text = "Fecha: $fechaFormateada"
+            itemView.findViewById<TextView>(R.id.fechaValoracion).text = fechaFormateada
         }
     }
 

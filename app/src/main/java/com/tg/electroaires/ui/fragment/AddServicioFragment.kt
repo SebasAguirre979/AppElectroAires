@@ -7,8 +7,11 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -31,6 +34,7 @@ class AddServicioFragment : Fragment() {
 
     private var validarBotonCliente: Boolean = false
     private var validarBotonVehiculo: Boolean = false
+    private lateinit var spinner: Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +51,7 @@ class AddServicioFragment : Fragment() {
 
         val btnBuscarCliente = view.findViewById<ImageButton>(R.id.busquedaCliente)
         val btnBuscarvehiculo = view.findViewById<ImageButton>(R.id.busquedaVehiculo)
-        val btnAddServicio = view.findViewById<FloatingActionButton>(R.id.addServicio)
+        val btnAddServicio = view.findViewById<Button>(R.id.addServicio)
 
         btnBuscarCliente.setOnClickListener {
             val textCedulaText = view.findViewById<EditText>(R.id.editTextCliente).text.toString()
@@ -304,7 +308,8 @@ class AddServicioFragment : Fragment() {
             .setPositiveButton("Guardar") { dialog, _ ->
 
                 dialogView.findViewById<EditText>(R.id.placaVehiculo).setText("$placa")
-                val tipo = dialogView.findViewById<EditText>(R.id.tipoVehiculo).text.toString()
+                spinner = dialogView.findViewById(R.id.spinnerVehiculo)
+                val tipo = spinner.selectedItem.toString()
 
                 val data = GetVehiculo(placa, tipo)
 

@@ -89,7 +89,9 @@ class ServicioFragment : Fragment() {
 
     fun filterServicesByClient(query: String) {
         val filteredServices = originalServices.filter { servicio ->
-            servicio.s_descripcion.contains(query, ignoreCase = true)
+            servicio.s_descripcion.contains(query, ignoreCase = true) or
+            servicio.cliente.contains(query, ignoreCase = true) or
+            servicio.s_vehiculo.contains(query, ignoreCase = true)
         }
         servicioAdapter.updateData(filteredServices)
     }

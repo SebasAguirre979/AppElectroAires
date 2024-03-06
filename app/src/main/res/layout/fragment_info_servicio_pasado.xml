@@ -53,7 +53,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="5dp"
                         android:textSize="17sp"
-                        android:text="Cedula:" />
+                        android:text="Cédula:" />
 
                     <TextView
                         android:id="@+id/textCedula"
@@ -274,7 +274,7 @@
         android:layout_width="wrap_content"
         android:layout_height="18dp"
         android:layout_marginHorizontal="7dp"
-        android:text="Añadir servicio"
+        android:text="Añadir Servicio"
         app:layout_anchor="@+id/refreshInfoServicio"
         app:layout_anchorGravity="bottom|center"
         android:textStyle="bold"/>

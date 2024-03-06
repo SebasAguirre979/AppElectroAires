@@ -9,7 +9,7 @@
         android:id="@+id/textViewTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CREACIÓN CLIENTE"
+        android:text="Creación Cliente"
         android:gravity="center"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -25,7 +25,7 @@
         android:id="@+id/cedulaCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Cedula"
+        android:hint="Cédula"
         android:inputType="number"
         android:maxLength="10"/>
 

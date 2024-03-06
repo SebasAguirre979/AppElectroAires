@@ -2,11 +2,11 @@
     <string name="app_name">ElectroAires</string>
     <string name="bienvenido">Bienvenido!</string>
     <string name="iniciar_sesi_n">Iniciar Sesión</string>
-    <string name="ingresa_tu_cedula">Ingresa tu cedula</string>
+    <string name="ingresa_tu_cedula">Ingresa tu cédula</string>
     <string name="ingresa_tu_contrase_a">Ingresa tu contraseña</string>
     <string name="logoinicio">logoInicio</string>
     <string name="recuperar_contrase_a">Recuperar Contraseña</string>
-    <string name="_2023_jhon_rengifo_sebastian_aguirre"><![CDATA[© 2023 Jhon Rengifo & Sebastian Aguirre]]></string>
+    <string name="_2023_jhon_rengifo_sebastian_aguirre"><![CDATA[© 2023 Jhon Rengifo & Sebastián Aguirre]]></string>
     <string name="todo">TODO</string>
     <string name="enviaremos_un_e_mail_para_recuperar_tu_contrase_a">Enviaremos un e-mail para recuperar tu contraseña.</string>
     <string name="enviar">Enviar</string>

@@ -8,7 +8,7 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="OPINA SOBRE NUESTRO SERVICIO"
+        android:text="Opina Sobre Nuestro Servicio"
         android:textStyle="bold"
         android:textSize="18dp"
         android:gravity="center"/>
@@ -27,7 +27,7 @@
         android:id="@+id/descripcionValoracion"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:hint="Escribenos tus sugerencias..."
+        android:hint="Escríbenos tus sugerencias"
         android:layout_margin="5dp"/>
 
 </LinearLayout>

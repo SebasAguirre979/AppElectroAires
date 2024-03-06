@@ -26,13 +26,13 @@
             android:id="@+id/manoObra"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Mano de Obra:"/>
+            tools:text="Mano de obra:"/>
 
         <TextView
             android:id="@+id/fechaIngreso"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Fecha Ingreso:"/>
+            tools:text="Fecha ingreso:"/>
 
         <TextView
             android:id="@+id/cliente"
@@ -47,7 +47,7 @@
             android:padding="8dp"
             android:textSize="16sp"
             android:textStyle="bold"
-            tools:text="Vehiculo:"/>
+            tools:text="Vehículo:"/>
 
         <TextView
             android:id="@+id/total"

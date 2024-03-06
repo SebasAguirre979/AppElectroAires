@@ -43,7 +43,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //Mandar nombre al nav_header
         val headerView = navigationView.getHeaderView(0)
         val textView = headerView.findViewById<TextView>(R.id.nombreUsuario)
-        textView.text = "Hola: $nombre_usuario"
+        textView.text = "Bienvenido: $nombre_usuario"
 
 
         val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar,
@@ -112,7 +112,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     //Finalizar actividad al dar logout desde el menu de navegacion
     fun finalizarActivity(){
-        Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Cierre de sesión exitoso!", Toast.LENGTH_SHORT).show()
         finish()
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)

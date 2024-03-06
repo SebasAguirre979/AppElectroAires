@@ -18,8 +18,8 @@ object AdminToken {
     fun generateOrRefreshToken(onTokenReady: () -> Unit) {
         val tokenService = RetrofitClient.tokenApi
 
-        val username = "admin"
-        val password = "admin"
+        val username = "adminelectro"
+        val password = "AdMiN3l3tr0"
 
         if (accessToken.isNullOrEmpty()) {
             // Datos para la generación del token

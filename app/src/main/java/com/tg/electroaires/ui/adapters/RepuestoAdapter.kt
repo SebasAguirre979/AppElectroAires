@@ -143,10 +143,10 @@ class RepuestoAdapter(private val context: Context,
                     // El servicio se eliminó correctamente (estatus 200)
                     // Realizar las acciones necesarias en tu app
 
-                    Toast.makeText(context, "El servicio se eliminó correctamente", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "El repuesto se eliminó correctamente", Toast.LENGTH_SHORT).show()
                 } else {
                     // Ocurrió un error al eliminar el servicio
-                    Toast.makeText(context, "Error al eliminar el servicio", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Error al eliminar el repuesto", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -168,10 +168,10 @@ class RepuestoAdapter(private val context: Context,
                     // El servicio se eliminó correctamente (estatus 200)
                     // Realizar las acciones necesarias en tu app
 
-                    Toast.makeText(context, "El servicio se edito correctamente", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "El repuesto se edito correctamente", Toast.LENGTH_SHORT).show()
                 } else {
                     // Ocurrió un error al eliminar el servicio
-                    Toast.makeText(context, "Error al editar el servicio", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Error al editar el repuesto", Toast.LENGTH_SHORT).show()
                 }
             }
 

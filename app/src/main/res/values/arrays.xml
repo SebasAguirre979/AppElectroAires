@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="opciones_spinner">
+        <item>Automóvil</item>
+        <item>Volqueta</item>
+        <item>Camion</item>
+        <item>Tractocamión</item>
+        <item>Taxi</item>
+        <item>Ambulancia</item>
+        <item>Turbo</item>
+        <item>Sedán</item>
+        <item>SUV</item>
+        <item>Camioneta</item>
+        <item>Coupé</item>
+        <item>Furgoneta</item>
+        <item>Pickup</item>
+        <item>Retroescabadora</item>
+    </string-array>
+</resources>

@@ -41,6 +41,7 @@
         android:layout_marginBottom="120dp"
         android:backgroundTint="@color/blue_200"
         android:text="@string/iniciar_sesi_n"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -73,7 +73,7 @@ class InfoServicioFragment : Fragment() {
         val activity = requireActivity() as AppCompatActivity
         activity.setSupportActionBar(view.findViewById(R.id.toolbar2))
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        activity.supportActionBar?.setTitle("Información servicio")
+        activity.supportActionBar?.setTitle("Información Servicio")
 
         // Ocultar el toolbar personalizado del HomeActivity
         val homeToolbar = activity.findViewById<Toolbar>(R.id.toolbar)
@@ -362,10 +362,10 @@ class InfoServicioFragment : Fragment() {
                     // El servicio se eliminó correctamente (estatus 200)
                     // Realizar las acciones necesarias en tu app
 
-                    Toast.makeText(context, "El servicio se agrego correctamente", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "El repuesto se agrego correctamente", Toast.LENGTH_SHORT).show()
                 } else {
                     // Ocurrió un error al eliminar el servicio
-                    Toast.makeText(context, "Error al agregar el servicio", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Error al agregar el repuesto", Toast.LENGTH_SHORT).show()
                 }
             }
 

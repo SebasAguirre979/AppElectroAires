@@ -41,7 +41,7 @@ class BuscarVehiculoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Establecer el título de la ActionBar
-        (activity as AppCompatActivity).supportActionBar?.setTitle("Servicios por placa")
+        (activity as AppCompatActivity).supportActionBar?.setTitle("Buscar Vehículo")
 
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_buscar_vehiculo, container, false)

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"
+    android:layout_marginHorizontal="10dp"
     android:clickable="true"
     app:cardCornerRadius="5dp"
     app:cardElevation="2dp"
@@ -29,16 +30,25 @@
             android:isIndicator="true"/>
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comentario:"
+            android:textSize="12sp" />
+        <TextView
             android:id="@+id/opinion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Opinion:"/>
+            android:textSize="16sp"
+            tools:text="Comentario"/>
 
         <TextView
             android:id="@+id/fechaValoracion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Fecha:"/>
+            tools:text="Fecha"
+            android:layout_marginTop="8dp"
+            android:textSize="12sp"
+            android:gravity="end"/>
 
     </LinearLayout>
 

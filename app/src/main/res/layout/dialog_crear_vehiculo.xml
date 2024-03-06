@@ -9,7 +9,7 @@
         android:id="@+id/textViewTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CREACIÓN VEHICULO"
+        android:text="Creación Vehículo"
         android:gravity="center"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -20,14 +20,20 @@
         android:layout_height="wrap_content"
         android:hint="Placa"
         android:inputType="textCapCharacters"
-        android:maxLength="6"/>
+        android:maxLength="6"
+        android:layout_marginHorizontal="5dp"/>
 
-    <EditText
-        android:id="@+id/tipoVehiculo"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seleccione un tipo de vehículo:"
+        android:textSize="12sp"
+        android:layout_marginHorizontal="7dp"/>
+    <Spinner
+        android:id="@+id/spinnerVehiculo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Tipo"
-        android:inputType="textCapWords"/>
+        android:entries="@array/opciones_spinner"/>
 
 
 </LinearLayout>

@@ -35,7 +35,7 @@ class InfoServicioPasadoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Establecer el título de la ActionBar
-        (activity as AppCompatActivity).supportActionBar?.setTitle("Información servicio pasado")
+        (activity as AppCompatActivity).supportActionBar?.setTitle("Información Servicio Anterior")
 
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_info_servicio_pasado, container, false)

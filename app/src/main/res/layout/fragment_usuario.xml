@@ -16,22 +16,34 @@
             android:orientation="vertical">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginHorizontal="22dp"
+                android:text="Nombre:"
+                android:textSize="10sp" />
+            <TextView
                 android:id="@+id/textViewName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_marginHorizontal="22dp"
                 android:text="Nombre"
-                android:textSize="25sp" />
+                android:textSize="18sp"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="22dp"
+                android:layout_marginTop="10dp"
+                android:text="Cédula:"
+                android:textSize="10sp" />
             <TextView
                 android:id="@+id/textViewCedula"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
+                android:layout_marginHorizontal="22dp"
                 android:text="Cédula"
-                android:textSize="25sp" />
+                android:textSize="18sp"/>
 
 
             <!-- Campo para contraseña anterior -->
@@ -39,7 +51,7 @@
                 android:id="@+id/textInputLayoutOldPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
+                android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"
                 app:endIconMode="password_toggle">
 
@@ -48,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:hint="Contraseña anterior"
+                    android:hint="Contraseña actual"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -58,7 +70,7 @@
                 android:id="@+id/textInputLayoutNewPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
+                android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"
                 app:endIconMode="password_toggle">
 
@@ -77,7 +89,7 @@
                 android:id="@+id/textInputLayoutConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
+                android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"
                 app:endIconMode="password_toggle">
 
@@ -100,7 +112,20 @@
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@color/blue_200"
                 android:textColor="@color/white"
-                android:text="Cambiar contraseña" />
+                android:text="Guardar"
+                android:textAllCaps="false"/>
+
+            <ProgressBar
+                android:id="@+id/progressBarUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toTopOf="@+id/textView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonIniciarSesion"
+                tools:ignore="MissingConstraints"
+                android:indeterminateTint="@color/blue_200"/>
 
             <!--Button
                 android:id="@+id/buttonToken"

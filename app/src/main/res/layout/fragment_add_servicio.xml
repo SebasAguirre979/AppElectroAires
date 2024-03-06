@@ -11,17 +11,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:text="Formulario Para Agregar Servico"
-            android:textColor="@color/blue_200"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,7 +22,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Cedula"
+                android:hint="Cédula"
                 android:inputType="number"
                 android:maxLength="10" />
 
@@ -124,7 +113,7 @@
                 android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:layout_weight="1"
-                android:hint="Descripción..."
+                android:hint="Descripción."
                 android:maxLength="100"
                 android:maxLines="5"
                 android:inputType="textCapSentences|textMultiLine" />
@@ -154,23 +143,14 @@
             android:gravity="bottom|center"
             android:orientation="vertical">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+            <Button
                 android:id="@+id/addServicio"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/blue_200"
-                app:layout_anchor="@id/refreshInfoServicio"
-                app:srcCompat="@drawable/baseline_save_24"
-                app:tint="@color/white" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="7dp"
                 android:text="Guardar"
-                android:textStyle="bold"
-                app:layout_anchor="@+id/refreshInfoServicio"
-                app:layout_anchorGravity="bottom|center" />
+                android:textAllCaps="false"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/blue_200"/>
 
         </LinearLayout>
 

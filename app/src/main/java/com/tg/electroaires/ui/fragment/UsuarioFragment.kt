@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -34,9 +35,13 @@ class UsuarioFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Establecer el título de la ActionBar
-        (activity as AppCompatActivity).supportActionBar?.setTitle("Cambio de contraseña")
+        (activity as AppCompatActivity).supportActionBar?.setTitle("Cambiar Contraseña")
 
         val view = inflater.inflate(R.layout.fragment_usuario, container, false)
+
+        //Escondo la barra de carga para solo mostrarla al hacer la peticion
+        val progressBar = view.findViewById<ProgressBar>(R.id.progressBarUsuario)
+        progressBar.visibility = View.GONE
 
         // Obtener el usuario y cedula desde la VariableGlobal
         val singleton = VariableGlobal.getInstance()
@@ -55,8 +60,6 @@ class UsuarioFragment : Fragment() {
             val anteriorContrasena = view.findViewById<EditText>(R.id.editTextOldPassword).text.toString()
             val nuevaContrasenaInput = view.findViewById<EditText>(R.id.editTextNewPassword).text.toString()
             val confirmacionNuevaContrasenaInput = view.findViewById<EditText>(R.id.editTextConfirmPassword).text.toString()
-
-            Log.d("HOLAAA","$nuevaContrasenaInput, $confirmacionNuevaContrasenaInput")
 
                 if (anteriorContrasena.isNotEmpty() && nuevaContrasenaInput.isNotEmpty() && confirmacionNuevaContrasenaInput.isNotEmpty()){
 
@@ -118,6 +121,10 @@ class UsuarioFragment : Fragment() {
         // Obtener el token de acceso
         val accessToken = AdminToken.getAccessToken()
 
+        //Defino la visibilidad de la barra de carga mientras intenta la peticion
+        val progressBar = view?.findViewById<ProgressBar>(R.id.progressBarUsuario)
+        progressBar?.visibility = View.VISIBLE
+
         if (accessToken != null) {
             val call = RetrofitClient.usuarioApi.cambioContrasena("Bearer $accessToken", cedulaUsuario, data)
             call.enqueue(object : Callback<Void> {
@@ -131,6 +138,7 @@ class UsuarioFragment : Fragment() {
                             "La contraseña se cambio correctamente",
                             Toast.LENGTH_SHORT
                         ).show()
+                        progressBar?.visibility = View.GONE
                         vaciarCampos()
                     } else {
                         // Ocurrió un error al eliminar el servicio
@@ -139,6 +147,7 @@ class UsuarioFragment : Fragment() {
                             "La contraseña antigua no coincide",
                             Toast.LENGTH_SHORT
                         ).show()
+                        progressBar?.visibility = View.GONE
                         Toast.makeText(context, response.message(), Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -147,6 +156,7 @@ class UsuarioFragment : Fragment() {
                     // Error de conexión u otros errores de red
                     Toast.makeText(context, "Error de conexión: ${t.message}", Toast.LENGTH_SHORT)
                         .show()
+                    progressBar?.visibility = View.GONE
                 }
             })
         }else{
